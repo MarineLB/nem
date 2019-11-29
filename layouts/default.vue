@@ -68,7 +68,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Arial Black", $heading-type;
+  font-family: "Arial Black";
   font-weight: $heading-type-weight;
   line-height: $heading-type-line-height;
   letter-spacing: $heading-type-letter-spacing;
