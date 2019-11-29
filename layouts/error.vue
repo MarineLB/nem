@@ -5,7 +5,9 @@
       <p><error</p>
       <div class="suggestions">
         <div class="contact-form__button-wrapper">
-          <a href="/" class="contact-form__button button button--green">Back to home</a>
+          <a href="/" class="contact-form__button button button--green"
+            >Back to home</a
+          >
         </div>
       </div>
     </section>
@@ -18,10 +20,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.content-wrapper {
-  @include site-padding;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-</style>
+<style lang="scss"></style>

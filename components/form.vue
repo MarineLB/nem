@@ -10,10 +10,18 @@
       @submit="submit"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <div class="contact-form__item" v-for="item in data.items" :key="item.field_title">
+      <div
+        class="contact-form__item"
+        v-for="item in data.items"
+        :key="item.field_title"
+      >
         <label class="contact-form__item-label" :for="slug(item.field_title)">
           <span class="contact-form__item-title">{{ item.field_title }}</span>
-          <span class="contact-form__item-optional" v-if="item.required === 'Non'">Facultatif</span>
+          <span
+            class="contact-form__item-optional"
+            v-if="item.required === 'Non'"
+            >Facultatif</span
+          >
         </label>
         <input
           type="text"
@@ -44,7 +52,9 @@
         />
       </div>
       <div class="contact-form__button-wrapper">
-        <button class="contact-form__button button button--green" type="submit">Envoyer</button>
+        <button class="contact-form__button button button--green" type="submit">
+          Envoyer
+        </button>
         <div class="submit-feedback" v-if="feedback"></div>
       </div>
     </form>
@@ -82,7 +92,6 @@ export default {
 </script>
 <style lang="scss">
 .form__wrapper {
-  @include site-padding;
   display: flex;
   justify-content: space-around;
 }
@@ -120,7 +129,6 @@ input,
 textarea {
   border-radius: 4px;
   background: white;
-  border: 1px solid $mediumgrey;
   box-shadow: none;
   font-size: 1rem;
   padding: 0.3rem 0.75rem;

@@ -6,10 +6,4 @@
     </section>
   </div>
 </template>
-<style lang="scss">
-.content-wrapper {
-  @include site-padding;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-</style>
+<style lang="scss"></style>

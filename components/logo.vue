@@ -12,13 +12,4 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.logo {
-  max-width: 140px;
-  margin-top: 0.5rem;
-
-  @include breakpoint(small) {
-    max-width: 162px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

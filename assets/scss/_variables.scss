@@ -9,29 +9,37 @@ $secondary-accent: #fecb00;
 
 // fonts
 $heading-type: "arial black", "arial", sans-serif;
-$heading-type-weight: "bolder";
-$heading-type-letter-spacing: -3px;
-$heading-type-line-height: 1.1;
+$heading-type-weight: bolder;
+$heading-type-letter-spacing: -2px;
+$heading-type-line-height: 1.3;
 
 $body-type: "courier new", monospace;
-$body-type-weight: "normal";
+$body-type-weight: normal;
 $body-type-letter-spacing: 1px;
 $body-type-line-height: 1.3;
 
-// font scale
 $base-text-size: 16px;
 $text-scale-ratio: 1.25;
 
-@include breakpoint(medium) {
-  $text-scale-ratio: $phi;
-}
+$mobile-text-xs: calc(1em / #{$text-scale-ratio});
+$mobile-text-sm: 1em;
+$mobile-text-md: calc(1em * #{$text-scale-ratio});
+$mobile-text-lg: calc(1em * #{$text-scale-ratio} * #{$text-scale-ratio});
+$mobile-text-xl: calc(
+  1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
+);
+$mobile-text-xxl: calc(
+  1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
+);
 
-$text-xs: calc(1em / $text-scale-ratio);
+$text-scale-ratio: $phi;
+$text-xs: calc(1em / #{$text-scale-ratio});
 $text-sm: 1em;
-$text-md: calc(1em * $text-scale-ratio);
-$text-lg: calc(1em * $text-scale-ratio * $text-scale-ratio);
-$text-xl: calc(1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio);
+$text-md: calc(1em * #{$text-scale-ratio});
+$text-lg: calc(1em * #{$text-scale-ratio} * #{$text-scale-ratio});
+$text-xl: calc(
+  1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
+);
 $text-xxl: calc(
-  1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio *
-    $text-scale-ratio
+  1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
 );
