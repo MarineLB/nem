@@ -1,6 +1,11 @@
 <template>
   <div class="page">
-    <section v-for="(slice, index) in slices" :key="index" class="component-wrapper">
+    <h1>niclas erlandsson mastering</h1>
+    <section
+      v-for="(slice, index) in slices"
+      :key="index"
+      class="component-wrapper"
+    >
       <componentWrapper :type="slice.slice_type" :data="slice" />
     </section>
   </div>
@@ -53,5 +58,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
