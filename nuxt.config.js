@@ -2,6 +2,8 @@ import pkg from "./package";
 import Prismic from "prismic-javascript";
 import prismic from "prismic-nuxt";
 
+const SITENAME = "niclaserlandssonmastering";
+
 export default {
   mode: "universal",
 
@@ -12,8 +14,7 @@ export default {
     htmlAttrs: {
       lang: "fr"
     },
-    title:
-      "AudioConseil, au service de votre audition à Redon depuis 1998 à Redon 35",
+    title: "niclas erlandsson mastering todo#",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -46,7 +47,7 @@ export default {
     [
       "prismic-nuxt",
       {
-        endpoint: "https://SITENAME.cdn.prismic.io/api/v2",
+        endpoint: `https://${SITENAME}.cdn.prismic.io/api/v2`,
         linkResolver: function(doc, ctx) {
           if (doc.type === "homepage") return "/";
           if (doc.type === "page") return "/" + doc.uid;
@@ -57,9 +58,9 @@ export default {
     "@nuxtjs/sitemap"
   ],
   sitemap: {
-    hostname: "https://SITENAME.com",
+    hostname: "https://mastering.niclaserlandsson.com",
     routes: function() {
-      let pages = Prismic.api("https://SITENAME.cdn.prismic.io/api/v2")
+      let pages = Prismic.api(`https://${SITENAME}.cdn.prismic.io/api/v2`)
         .then(function(api) {
           return api.query(Prismic.Predicates.at("document.type", "page"));
         })
@@ -76,7 +77,7 @@ export default {
             console.log("Something went wrong: ", err);
           }
         );
-      let posts = Prismic.api("https://SITENAME.cdn.prismic.io/api/v2")
+      let posts = Prismic.api(`https://${SITENAME}.cdn.prismic.io/api/v2`)
         .then(function(api) {
           return api.query(Prismic.Predicates.at("document.type", "news"));
         })
@@ -118,7 +119,7 @@ export default {
   generate: {
     fallback: true,
     routes: function() {
-      let pages = Prismic.api("https://SITENAME.cdn.prismic.io/api/v2")
+      let pages = Prismic.api(`https://${SITENAME}.cdn.prismic.io/api/v2`)
         .then(function(api) {
           return api.query(Prismic.Predicates.at("document.type", "page"));
         })
@@ -135,7 +136,7 @@ export default {
             console.log("Something went wrong: ", err);
           }
         );
-      let posts = Prismic.api("https://SITENAME.cdn.prismic.io/api/v2")
+      let posts = Prismic.api(`https://${SITENAME}.cdn.prismic.io/api/v2`)
         .then(function(api) {
           return api.query(Prismic.Predicates.at("document.type", "news"));
         })
@@ -157,6 +158,5 @@ export default {
         return [...values[0], ...values[1], ["/", "/thank-you", "/404"]];
       });
     }
-    //routes: ["/", "/thank-you", "/contact"]
   }
 };

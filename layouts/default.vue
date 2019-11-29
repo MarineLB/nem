@@ -1,19 +1,15 @@
 <template>
   <div class="layout">
-    <site-header />
+    <h1>heading 1</h1>
+    <h2>heading 2</h2>
+    <h3>heading 3</h3>
+    <h4>heading 4</h4>
+    <p>body copy</p>
     <nuxt />
-    <site-footer />
   </div>
 </template>
 <script>
-import siteHeader from "~/components/siteHeader.vue";
-import siteFooter from "~/components/siteFooter.vue";
-
 export default {
-  components: {
-    siteHeader,
-    siteFooter
-  },
   head() {
     return {
       link: [
