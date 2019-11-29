@@ -5,11 +5,18 @@
         <logo />
         <nuxt />
       </div>
-      <div class="grid__block grid__block--philosophy">coming</div>
-      <div class="grid__block grid__block--portfolio">soon</div>
-      <div class="grid__block grid__block--services">as</div>
-      <div class="grid__block grid__block--contact">fuck</div>
-      <div class="grid__block grid__block--test1">!</div>
+      <div class="grid__block grid__block--philosophy">
+        mastering@niclaserlandsson.com
+      </div>
+      <div class="grid__block grid__block--portfolio">as fuck</div>
+      <div class="grid__block grid__block--services">soon</div>
+      <div class="grid__block grid__block--contact">coming</div>
+      <a
+        href="//facebook.com/niclaserland"
+        target="_blank"
+        class="grid__block grid__block--test1"
+        >!</a
+      >
       <div class="grid__block grid__block--test2"></div>
     </div>
   </div>
@@ -61,7 +68,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: $heading-type;
+  font-family: "Arial Black", $heading-type;
   font-weight: $heading-type-weight;
   line-height: $heading-type-line-height;
   letter-spacing: $heading-type-letter-spacing;
@@ -117,8 +124,8 @@ img {
 }
 
 // golden grid
-$height: 90vh;
-$width: $height * 1.618;
+$width: 70vw;
+$height: $width / 1.618;
 $border: 2px solid $primary-color;
 
 body {
