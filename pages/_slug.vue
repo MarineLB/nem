@@ -1,8 +1,6 @@
 <template>
   <div class="page">
-    <section v-for="(slice, index) in slices" :key="index" class="component-wrapper">
-      <component-wrapper :type="slice.slice_type" :data="slice" />
-    </section>
+    <div class="content" v-html="$prismic.asHtml(document.text)" />
   </div>
 </template>
 <script>

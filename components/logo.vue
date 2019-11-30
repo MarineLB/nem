@@ -12,4 +12,11 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.logo {
+  width: 50px;
+  @include breakpoint(medlarge) {
+    width: 75px;
+  }
+}
+</style>

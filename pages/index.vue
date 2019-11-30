@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div v-html="$prismic.asHtml(document.site_title)"></div>
+    <div class="home-site-title" v-html="$prismic.asHtml(document.site_title)"></div>
     <section v-for="(slice, index) in slices" :key="index" class="component-wrapper">
       <componentWrapper :type="slice.slice_type" :data="slice" />
     </section>
@@ -54,4 +54,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.home-site-title h1 {
+  word-spacing: 500px;
+}
+</style>
