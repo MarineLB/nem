@@ -1,11 +1,7 @@
 <template>
   <div class="page">
-    <h1>niclas erlandsson mastering</h1>
-    <section
-      v-for="(slice, index) in slices"
-      :key="index"
-      class="component-wrapper"
-    >
+    <div v-html="$prismic.asHtml(document.site_title)"></div>
+    <section v-for="(slice, index) in slices" :key="index" class="component-wrapper">
       <componentWrapper :type="slice.slice_type" :data="slice" />
     </section>
   </div>

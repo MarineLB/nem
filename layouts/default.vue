@@ -69,20 +69,8 @@ h4 {
   color: $primary-color;
   margin-bottom: var(--space-xxs);
 }
+
 h1 {
-  font-size: $mobile-text-xxl;
-  @include breakpoint(medium) {
-    font-size: $text-xxl;
-    letter-spacing: calc(
-      #{$heading-type-letter-spacing} * #{$text-scale-ratio} * #{$text-scale-ratio} *
-        #{$text-scale-ratio}
-    );
-    line-height: calc(
-      #{$heading-type-line-height} / #{$text-scale-ratio} * #{$text-scale-ratio}
-    );
-  }
-}
-h2 {
   font-size: $mobile-text-xl;
   @include breakpoint(medium) {
     font-size: $text-xl;
@@ -91,7 +79,7 @@ h2 {
     );
   }
 }
-h3 {
+h2 {
   font-size: $mobile-text-lg;
   @include breakpoint(medium) {
     font-size: $text-lg;
@@ -100,7 +88,7 @@ h3 {
     );
   }
 }
-h4 {
+h3 {
   font-size: $mobile-text-md;
   letter-spacing: calc(#{$heading-type-letter-spacing} / #{$text-scale-ratio});
   @include breakpoint(medium) {
