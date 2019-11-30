@@ -20,7 +20,10 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: pkg.description }
     ],
-    link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
+    link: [
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "stylesheet", type: "text/css", href: "/font.css" }
+    ]
   },
 
   /*
