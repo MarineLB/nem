@@ -123,6 +123,7 @@ body {
 
 .golden-grid {
   width: $width;
+  max-width: 98vw;
   height: $height;
   border: $border;
   border-left: 3px solid $primary-color;
@@ -137,7 +138,7 @@ body {
     "D G F B"
     "C C C B";
 
-  @include breakpoint(medium) {
+  @include breakpoint(medlarge) {
     width: $width-desktop;
     height: $height;
     grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
