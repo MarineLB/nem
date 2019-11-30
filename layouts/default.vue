@@ -109,8 +109,9 @@ img {
 }
 
 // golden grid
-$width: 70vw;
-$height: $width / 1.618;
+$height: 80vh;
+$width-desktop: calc(#{$height}* #{$phi});
+$width: calc(#{$height}/ #{$phi});
 $border: 2px solid $primary-color;
 
 body {
@@ -128,14 +129,25 @@ body {
   border-right: 3px solid $primary-color;
   display: grid;
   background: $secondary-color;
-
-  grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
   grid-template-rows: 61.8% 9.02% 5.58% 23.6%;
+  grid-template-columns: 23.6% 5.58% 9.02% 61.8%;
   grid-template-areas:
-    "A B B B"
-    "A E F C"
-    "A E G C"
-    "A D D C";
+    "A A A A"
+    "D E E B"
+    "D G F B"
+    "C C C B";
+
+  @include breakpoint(medium) {
+    width: $width-desktop;
+    height: $height;
+    grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
+    grid-template-rows: 61.8% 9.02% 5.58% 23.6%;
+    grid-template-areas:
+      "A B B B"
+      "A E F C"
+      "A E G C"
+      "A D D C";
+  }
 }
 
 .grid__block {
