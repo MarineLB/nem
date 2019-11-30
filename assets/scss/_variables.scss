@@ -9,7 +9,8 @@ $secondary-accent: #fecb00;
 
 // fonts
 $heading-type: "Arial Black", "Arial", sans-serif;
-$heading-type-weight: bolder;
+$heading-type-fallback: "Arial", sans-serif;
+$heading-type-weight: 900;
 $heading-type-letter-spacing: -2px;
 $heading-type-line-height: 1.3;
 

@@ -5,18 +5,11 @@
         <logo />
         <nuxt />
       </div>
-      <div class="grid__block grid__block--philosophy">
-        mastering@niclaserlandsson.com
-      </div>
+      <div class="grid__block grid__block--philosophy">mastering@niclaserlandsson.com</div>
       <div class="grid__block grid__block--portfolio">as fuck</div>
       <div class="grid__block grid__block--services">soon</div>
       <div class="grid__block grid__block--contact">coming</div>
-      <a
-        href="//facebook.com/niclaserland"
-        target="_blank"
-        class="grid__block grid__block--test1"
-        >!</a
-      >
+      <a href="//facebook.com/niclaserland" target="_blank" class="grid__block grid__block--test1">!</a>
       <div class="grid__block grid__block--test2"></div>
     </div>
   </div>
@@ -68,7 +61,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Arial", sans-serif;
+  font-family: $heading-type-fallback;
+  font-family: $heading-type;
   font-weight: $heading-type-weight;
   line-height: $heading-type-line-height;
   letter-spacing: $heading-type-letter-spacing;
@@ -82,6 +76,9 @@ h1 {
     letter-spacing: calc(
       #{$heading-type-letter-spacing} * #{$text-scale-ratio} * #{$text-scale-ratio} *
         #{$text-scale-ratio}
+    );
+    line-height: calc(
+      #{$heading-type-line-height} / #{$text-scale-ratio} * #{$text-scale-ratio}
     );
   }
 }
