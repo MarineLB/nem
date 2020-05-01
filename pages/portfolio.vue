@@ -3,9 +3,7 @@
     <div class="content">
       <h2>Portfolio</h2>
       <p>
-        You will notice that the master sounds louder, even though this Tracks
-        gain matched at true peak max -0.2dBFS.
-        <br />Pre-master -8,8 LUFS, Master -7,1 LUFS.
+        Tracks gain-matched at true peak max -0.2dBFS.
       </p>
       <client-only>
         <player />

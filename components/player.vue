@@ -172,7 +172,7 @@ export default {
   border: 2px solid $primary-color;
   height: 29px;
   outline: none;
-  line-height: 1;
+  //line-height: 1;
   vertical-align: middle;
   cursor: pointer;
   transition: all 0.2s ease-out;
