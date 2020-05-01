@@ -5,7 +5,11 @@
         class="player__waveform player__waveform--premaster"
         :class="{ 'player__waveform--hidden': currentlyPlaying === 'master' }"
         ref="waveformP"
-      ></div>
+      >
+        <span class="waveform__loading" v-if="loadedFiles < 2"
+          >Loading audio files... {{ loadedFiles }} / 2</span
+        >
+      </div>
       <div
         class="player__waveform player__waveform--master"
         :class="{ 'player__waveform--hidden': currentlyPlaying !== 'master' }"
@@ -48,6 +52,7 @@ export default {
     return {
       WaveSurfer: null,
       waveSurfer: {},
+      loadedFiles: 0,
       options: {
         responsive: true,
         height: 50,
@@ -84,6 +89,13 @@ export default {
     this.premaster = new this.WaveSurfer.create(wsOptionsP);
     this.master.load(master);
     this.premaster.load(premaster);
+
+    this.premaster.on("ready", () => {
+      this.loadedFiles++;
+    });
+    this.master.on("ready", () => {
+      this.loadedFiles++;
+    });
 
     this.premaster.on("finish", () => {
       this.play("premaster", 0);
