@@ -3,8 +3,9 @@
     <div class="content">
       <h2>Portfolio</h2>
       <p>
-        This is an example of my work for this person, in this master i did this
-        and that and i can write a little bit about it and shit.
+        You will notice that the master sounds louder, even though this Tracks
+        gain matched at true peak max -0.2dBFS.
+        <br />Pre-master -8,8 LUFS, Master -7,1 LUFS.
       </p>
       <client-only>
         <player />

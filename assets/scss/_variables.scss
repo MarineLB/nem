@@ -47,5 +47,6 @@ $text-xl: calc(
   1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
 );
 $text-xxl: calc(
-  1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
+  1em * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * (#{$text-scale-ratio} *
+        0.8)
 );

@@ -25,23 +25,23 @@
           <span class="play">▶︎</span><span class="pause"></span>
         </button>
         <button class="control" @click="switchTrack">
-          switch to {{ notPlaying }}
+          switch
         </button>
       </div>
     </div>
     <div class="player__feedback">
-      <small v-if="currentlyPlaying">
-        currently playing <strong>{{ currentlyPlaying }}</strong>
-      </small>
-      <small v-else>
-        select a track to play
+      <small>
+        Vinicius Honorio & Orion - No Love Lost (Temudo Remix)<br />
+        <span v-if="currentlyPlaying">
+          currently playing <strong>{{ currentlyPlaying }}</strong>
+        </span>
       </small>
     </div>
   </div>
 </template>
 <script>
-import master from "@/assets/audio/master-test.wav";
-import premaster from "@/assets/audio/premaster-test.wav";
+import master from "@/assets/audio/master.wav";
+import premaster from "@/assets/audio/premaster.wav";
 
 export default {
   data() {
@@ -56,11 +56,11 @@ export default {
         waveColor: "#ccc"
       },
       optionsP: {
-        progressColor: "hsl(207, 100%, 26%)",
+        progressColor: "black",
         cursorColor: "black"
       },
       optionsM: {
-        progressColor: "#fecb00",
+        progressColor: "hsl(207, 100%, 26%)",
         cursorColor: "black"
       },
       currentlyPlaying: null,
@@ -136,6 +136,7 @@ export default {
 
   &--hidden {
     opacity: 0;
+    z-index: -1;
   }
 }
 
@@ -161,6 +162,11 @@ export default {
   line-height: 1;
   vertical-align: middle;
   cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    box-shadow: inset 0px 0px 0px 1px black;
+  }
 
   &--icons {
     padding-top: 5px;

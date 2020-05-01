@@ -18,5 +18,15 @@ export default {
   @include breakpoint(medlarge) {
     width: 75px;
   }
+
+  img {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 0px 0px 1px black;
+  }
+  &:hover {
+    img {
+      box-shadow: 0px 0px 0px 3px black;
+    }
+  }
 }
 </style>
