@@ -26,6 +26,7 @@
     "slugg": "^1.2.1",
     "validator": "^11.0.0",
     "vue-loader": "^15.7.0",
+    "wavesurfer.js": "^3.3.3",
     "xss-filters": "^1.2.7"
   },
   "devDependencies": {

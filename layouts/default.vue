@@ -8,22 +8,27 @@
         <nuxt />
       </div>
       <nuxt-link to="/philosophy" class="grid__block grid__block--philosophy">
-        <div class="content">
+        <div class="content content--philosophie">
           <p>philosophy / about</p>
-          <h2>I aim to be invisible when i master</h2>
-          <p>
+          <h2 class="quote">I aim to be invisible when i master</h2>
+          <p class="quote__author">
             <small>- Ian Sheperd</small>
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link to="/services" class="grid__block grid__block--portfolio">
-        <div class="content">
-          <p>services</p>
-        </div>
+      <nuxt-link to="/portfolio" class="grid__block grid__block--portfolio">
+        portfolio
       </nuxt-link>
-      <div class="grid__block grid__block--services"></div>
+      <nuxt-link to="/services" class="grid__block grid__block--services">
+        services
+      </nuxt-link>
       <div class="grid__block grid__block--contact"></div>
-      <a href="//facebook.com/niclaserland" target="_blank" class="grid__block grid__block--test1">!</a>
+      <a
+        href="//facebook.com/niclaserland"
+        target="_blank"
+        class="grid__block grid__block--test1"
+        >☞</a
+      >
       <div class="grid__block grid__block--test2"></div>
     </div>
   </div>
@@ -75,9 +80,9 @@ h1,
 h2,
 h3,
 h4 {
+  font-weight: $heading-type-weight;
   font-family: $heading-type-fallback;
   font-family: $heading-type;
-  font-weight: $heading-type-weight;
   line-height: $heading-type-line-height;
   letter-spacing: $heading-type-letter-spacing;
   color: inherit;
@@ -130,7 +135,7 @@ small {
 }
 
 // golden grid
-$height: 87vh;
+$height: 83vh;
 $width-desktop: calc(#{$height}* #{$phi});
 $width: calc(#{$height}/ #{$phi});
 $border: 2px solid $primary-color;
@@ -210,7 +215,7 @@ p {
   padding: $margin-md;
   .content {
     max-width: 500px;
-    white-space: pre-wrap;
+    //white-space: pre-wrap;
   }
 
   &.nuxt-link-exact-active {
@@ -254,11 +259,17 @@ p {
     background: $primary-accent;
     color: white;
     padding: $margin-xs;
+    &:hover {
+      color: $secondary-accent;
+    }
   }
   &--test2 {
     grid-area: G;
     background: $secondary-accent;
     padding: $margin-xs;
   }
+}
+.quote__author {
+  margin-bottom: 0;
 }
 </style>
