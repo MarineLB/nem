@@ -159,6 +159,7 @@ export default {
 
 .player__feedback {
   margin-top: 7px;
+  margin-bottom: 20px;
 }
 
 .control {
