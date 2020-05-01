@@ -2,5 +2,6 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Arial Black" !important;
+  font-family: "Arial Black", "Arial Bold", "Arial" !important;
+  font-weight: 900;
 }

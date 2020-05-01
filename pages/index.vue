@@ -1,7 +1,14 @@
 <template>
   <div class="page">
-    <div class="home-site-title" v-html="$prismic.asHtml(document.site_title)"></div>
-    <section v-for="(slice, index) in slices" :key="index" class="component-wrapper">
+    <div
+      class="home-site-title"
+      v-html="$prismic.asHtml(document.site_title)"
+    ></div>
+    <section
+      v-for="(slice, index) in slices"
+      :key="index"
+      class="component-wrapper"
+    >
       <componentWrapper :type="slice.slice_type" :data="slice" />
     </section>
   </div>
@@ -48,7 +55,7 @@ export default {
       const page = document.results[0].data;
       return { document: page, slices: page.body };
     } else {
-      error({ statusCode: 404, message: "Page introuvable" });
+      error({ statusCode: 404, message: "You're lost" });
     }
   }
 };

@@ -6,7 +6,7 @@
       <div class="suggestions">
         <div class="contact-form__button-wrapper">
           <a href="/" class="contact-form__button button button--green"
-            >Back to home</a
+            >Back to homepage</a
           >
         </div>
       </div>

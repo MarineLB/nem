@@ -39,7 +39,7 @@ export default {
         const page = document.data;
         return { document: page, slices: page.body };
       } else {
-        error({ statusCode: 404, message: "Page introuvable" });
+        error({ statusCode: 404, message: "You're lost" });
       }
     }
   }

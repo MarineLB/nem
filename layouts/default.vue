@@ -7,23 +7,37 @@
         </header>
         <nuxt />
       </div>
-      <nuxt-link to="/philosophy" class="grid__block grid__block--philosophy">
-        <div class="content">
+      <nuxt-link
+        to="/philosophy"
+        class="grid__block grid__block--link grid__block--philosophy"
+      >
+        <div class="content content--philosophie">
           <p>philosophy / about</p>
-          <h2>I aim to be invisible when i master</h2>
-          <p>
+          <h2 class="quote">I aim to be invisible when i master</h2>
+          <p class="quote__author">
             <small>- Ian Sheperd</small>
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link to="/services" class="grid__block grid__block--portfolio">
-        <div class="content">
-          <p>services</p>
-        </div>
+      <nuxt-link
+        to="/portfolio"
+        class="grid__block grid__block--link grid__block--portfolio"
+      >
+        portfolio
       </nuxt-link>
-      <div class="grid__block grid__block--services"></div>
+      <nuxt-link
+        to="/services"
+        class="grid__block grid__block--link grid__block--services"
+      >
+        services
+      </nuxt-link>
       <div class="grid__block grid__block--contact"></div>
-      <a href="//facebook.com/niclaserland" target="_blank" class="grid__block grid__block--test1">!</a>
+      <a
+        href="//facebook.com/niclaserland"
+        target="_blank"
+        class="grid__block grid__block--link grid__block--test1"
+        >☞</a
+      >
       <div class="grid__block grid__block--test2"></div>
     </div>
   </div>
@@ -34,12 +48,24 @@ export default {
   components: {
     logo
   },
+  transition: {
+    name: "layout",
+    mode: "out-in"
+  },
+  pageTransition: {
+    name: "layout",
+    mode: "out-in"
+  },
+  layoutTransition: {
+    name: "layout",
+    mode: "out-in"
+  },
   head() {
     return {
       link: [
         {
           rel: "canonical",
-          href: "https://SITENAME.com" + this.$route.path
+          href: "https://mastering.niclaserlandsson.com" + this.$route.path
         }
       ]
     };
@@ -65,9 +91,46 @@ body {
   letter-spacing: $body-type-letter-spacing;
   color: $primary-color;
   font-size: $base-text-size;
+  position: fixed;
+  height: 100%;
+  width: 100%;
   //background: $primary-color;
   @include breakpoint(medium) {
     font-size: $base-text-size;
+  }
+
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $secondary-accent;
+    border: none;
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primary-accent;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: $primary-accent;
+  }
+  ::-webkit-scrollbar-track {
+    background: #eee;
+    border: none;
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #eee;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #eee;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }
 
@@ -75,16 +138,19 @@ h1,
 h2,
 h3,
 h4 {
+  font-weight: $heading-type-weight;
   font-family: $heading-type-fallback;
   font-family: $heading-type;
-  font-weight: $heading-type-weight;
   line-height: $heading-type-line-height;
-  letter-spacing: $heading-type-letter-spacing;
+  //letter-spacing: $heading-type-letter-spacing;
   color: inherit;
+  @include breakpoint(medlarge) {
+    letter-spacing: $heading-type-letter-spacing;
+  }
 }
 
 h1 {
-  font-size: $mobile-text-xl;
+  font-size: $mobile-text-xxl;
   @include breakpoint(medlarge) {
     font-size: $text-xxl;
     letter-spacing: calc(
@@ -93,7 +159,7 @@ h1 {
   }
 }
 h2 {
-  font-size: $mobile-text-lg;
+  font-size: $mobile-text-md;
   @include breakpoint(medlarge) {
     font-size: $text-lg;
     letter-spacing: calc(
@@ -130,7 +196,7 @@ small {
 }
 
 // golden grid
-$height: 87vh;
+$height: 85vh;
 $width-desktop: calc(#{$height}* #{$phi});
 $width: calc(#{$height}/ #{$phi});
 $border: 2px solid $primary-color;
@@ -205,12 +271,16 @@ p {
   text-decoration: none;
   box-sizing: border-box;
   border: $border;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: $margin-md;
+  overflow: hidden;
+  padding: $margin-sm;
+  transition: all 0.2s ease;
   .content {
     max-width: 500px;
-    white-space: pre-wrap;
+    //white-space: pre-wrap;
+  }
+
+  @include breakpoint(small) {
+    padding: $margin-md;
   }
 
   &.nuxt-link-exact-active {
@@ -218,22 +288,29 @@ p {
     color: $secondary-color;
     &:hover {
       color: $secondary-color;
+      cursor: initial;
     }
   }
 
-  &:hover {
-    //background: $primary-color;
-    color: $primary-accent;
-    //cursor: pointer;
+  &--link {
+    &:hover {
+      //color: $primary-accent;
+      box-shadow: inset 0px 0px 0px 5px black;
+      //cursor: pointer;
+    }
   }
 
   &--main {
     grid-area: A;
     display: block;
     cursor: initial;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
     &:hover {
       background: $secondary-color;
       color: $primary-color;
+      box-shadow: none;
     }
   }
   &--philosophy {
@@ -254,11 +331,27 @@ p {
     background: $primary-accent;
     color: white;
     padding: $margin-xs;
+
+    &:hover {
+      color: $secondary-accent;
+    }
   }
   &--test2 {
     grid-area: G;
     background: $secondary-accent;
     padding: $margin-xs;
   }
+}
+.quote__author {
+  margin-bottom: 0;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
 }
 </style>
