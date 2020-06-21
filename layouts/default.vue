@@ -137,7 +137,8 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   font-weight: $heading-type-weight;
   font-family: $heading-type-fallback;
   font-family: $heading-type;
@@ -176,6 +177,17 @@ h3 {
       #{$heading-type-letter-spacing} / #{$text-scale-ratio}
     );
   }
+}
+h4 {
+  font-size: $mobile-text-sm;
+  letter-spacing: 0;
+  @include breakpoint(medlarge) {
+    font-size: $text-sm;
+    letter-spacing: 0;
+  }
+}
+h5 {
+  letter-spacing: 0;
 }
 a {
   color: inherit;
