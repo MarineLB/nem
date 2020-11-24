@@ -3,20 +3,21 @@
     <div class="content">
       <h2>Portfolio</h2>
       <client-only>
-        <p>
-          Tracks gain-matched at true peak max -0.2dBFS.
-        </p>
+        <p>Tracks gain-matched at true peak max -0.2dBFS.</p>
         <player />
       </client-only>
     </div>
-
     <div class="testimonials">
-      <div class="testimonial" v-for="item in testimonials">
+      <div class="testimonial" v-for="item in testimonials" :key="item.author">
         <h4 class="testimonial__quote">
           {{ item.quote }}
         </h4>
         <span class="testimonial__author">- {{ item.author }}</span>
       </div>
+    </div>
+    <div class="others">
+      Other clients include : Lex Gorrie, The Plant Worker, Chlär, RAW ppl
+      Agency, Kaiser, Shaun Moses
     </div>
   </div>
 </template>
@@ -27,7 +28,7 @@ import player from "~/components/player.vue";
 export default {
   components: {
     componentWrapper,
-    player
+    player,
   },
   head() {
     return {
@@ -37,18 +38,18 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: "A preview of some of my masters."
+          content: "A preview of some of my masters.",
         },
         {
           name: "og:title",
-          content: "page title"
+          content: "page title",
         },
         {
           name: "og:description",
-          content: "A preview of some pre-masters and masters"
+          content: "A preview of some pre-masters and masters",
         },
-        { name: "og:type", content: "website" }
-      ]
+        { name: "og:type", content: "website" },
+      ],
     };
   },
   data() {
@@ -56,23 +57,23 @@ export default {
       testimonials: [
         {
           author: "Advanced Human (Gynoid Audio)",
-          quote: "I LOVE them man, very, very clean once again, and PUNCHY!!!"
+          quote: "I LOVE them man, very, very clean once again, and PUNCHY!!!",
         },
         {
           author: "Vinicius Honorio",
-          quote: "The masters are sounding excellent"
+          quote: "The masters are sounding excellent",
         },
         {
           author: "Subjected (PFTA)",
-          quote: "Hey man, the masters sounds ace. Thank you."
+          quote: "Hey man, the masters sounds ace. Thank you.",
         },
         {
           author: "Sandro Galli & DJ OGI",
-          quote: "Love the masters"
-        }
-      ]
+          quote: "Love the masters",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
