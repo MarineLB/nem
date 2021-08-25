@@ -40,11 +40,11 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: ["~/plugins/link-resolver.js"],
-
   /*
    ** Nuxt.js modules
    */
   modules: [
+    "@nuxtjs/google-analytics",
     "@nuxtjs/style-resources",
     "nuxt-svg-loader",
     [
@@ -108,6 +108,9 @@ export default {
   styleResources: {
     // your settings here
     scss: ["./assets/scss/**/*.scss", "./assets/scss/breakpoints.scss"]
+  },
+  googleAnalytics: {
+    id: "UA-167231073-2"
   },
 
   /*
