@@ -16,8 +16,10 @@
       </div>
     </div>
     <div class="others">
-      Other clients include : Lex Gorrie, The Plant Worker, Chlär, RAW ppl
-      Agency, Kaiser, Shaun Moses
+      Previous clients include: Subjected (PFTA), Orion, Vinicius Honorio,
+      Sandro Galli & DJ Ogi, Insolate, Speedmaster Records, United We Stream,
+      Chlär, RAW Agency, Lex Gorrie, Michel Lauriola, Fixeer, Mattias Fridell,
+      Advanced Human & more
     </div>
   </div>
 </template>
@@ -60,12 +62,18 @@ export default {
           quote: "I LOVE them man, very, very clean once again, and PUNCHY!!!",
         },
         {
-          author: "Vinicius Honorio",
-          quote: "The masters are sounding excellent",
+          author: "O.N.A",
+          quote:
+            "Special thanks to Niclas Erlandsson for his work as creative mastering engineer. I'm always surprised and encouraged by the things you're able to hear inside the music.",
         },
         {
           author: "Subjected (PFTA)",
           quote: "Hey man, the masters sounds ace. Thank you.",
+        },
+        {
+          author: "Michel Lauriola",
+          quote:
+            "Mate many thanks for this excellent master, sounds really great",
         },
         {
           author: "Sandro Galli & DJ OGI",

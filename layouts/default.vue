@@ -8,32 +8,33 @@
         <nuxt />
       </div>
       <nuxt-link
-        to="/philosophy"
+        to="/portfolio"
         class="grid__block grid__block--link grid__block--philosophy"
       >
-        <div class="content content--philosophie">
-          <p>philosophy / about</p>
-          <h2 class="quote">I aim to be invisible when i master</h2>
+        <div class="content content--portfolio">
+          <p>portfolio</p>
+          <!-- <player /> -->
+          <h2 class="quote h3">The masters are sounding excellent</h2>
           <p class="quote__author">
-            <small>- Ian Sheperd</small>
+            <small>- Vinicius Honorio</small>
           </p>
         </div>
       </nuxt-link>
       <nuxt-link
-        to="/portfolio"
+        to="/philosophy"
         class="grid__block grid__block--link grid__block--portfolio"
       >
-        portfolio
+        philosophy
       </nuxt-link>
       <nuxt-link
-        to="/services"
+        to="/contact"
         class="grid__block grid__block--link grid__block--services"
       >
-        services
+        get in touch
       </nuxt-link>
       <div class="grid__block grid__block--contact"></div>
       <a
-        href="//facebook.com/niclaserland"
+        href="//instagram.com/niclaserlandsson"
         target="_blank"
         class="grid__block grid__block--link grid__block--test1"
         >☞</a
@@ -44,9 +45,11 @@
 </template>
 <script>
 import logo from "@/components/logo";
+import player from "~/components/player.vue";
 export default {
   components: {
     logo,
+    player,
   },
   transition: {
     name: "layout",
