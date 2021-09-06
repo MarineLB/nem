@@ -12,9 +12,9 @@ export default {
    */
   head: {
     htmlAttrs: {
-      lang: "fr"
+      lang: "en"
     },
-    title: "niclas erlandsson mastering todo#",
+    title: "niclas erlandsson mastering - electronic music mastering",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },

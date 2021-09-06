@@ -19,18 +19,14 @@
 
     <div class="player__controls">
       <div class="controls__play" v-if="!currentlyPlaying">
-        <button class="control" @click="play('premaster')">
-          ▶︎ premaster
-        </button>
-        <button class="control" @click="play('master')">▶︎ master</button>
+        <Button @click="play('premaster')">▶︎ premaster</Button>
+        <Button @click="play('master')">▶︎ master</Button>
       </div>
       <div class="controls__playing" v-else>
-        <button class="control control--icons" @click="playPause">
+        <Button class="control--icons" @click="playPause">
           <span class="play">▶︎</span><span class="pause"></span>
-        </button>
-        <button class="control" @click="switchTrack">
-          switch
-        </button>
+        </Button>
+        <Button @click="switchTrack">switch</Button>
       </div>
     </div>
     <div class="player__feedback">
@@ -44,10 +40,12 @@
   </div>
 </template>
 <script>
+import Button from "@/components/button.vue";
 import master from "@/assets/audio/master.wav";
 import premaster from "@/assets/audio/premaster.wav";
 
 export default {
+  components: { Button },
   data() {
     return {
       WaveSurfer: null,
@@ -58,19 +56,19 @@ export default {
         height: 50,
         barWidth: 3,
         cursorWidth: 3,
-        waveColor: "#ccc"
+        waveColor: "#ccc",
       },
       optionsP: {
         progressColor: "black",
-        cursorColor: "black"
+        cursorColor: "black",
       },
       optionsM: {
         progressColor: "hsl(207, 100%, 26%)",
-        cursorColor: "black"
+        cursorColor: "black",
       },
       currentlyPlaying: null,
       notPlaying: null,
-      progress: 0
+      progress: 0,
     };
   },
   mounted() {
@@ -124,13 +122,13 @@ export default {
       this.currentTrack.pause();
       this.progress = this.currentTrack.getCurrentTime();
       this.play(this.notPlaying, this.progress);
-    }
+    },
   },
   computed: {
     currentTrack() {
       return this[this.currentlyPlaying];
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -162,29 +160,6 @@ export default {
   margin-bottom: 20px;
 }
 
-.control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-  background: $secondary-color;
-  color: $primary-color;
-  border: 2px solid $primary-color;
-  height: 29px;
-  outline: none;
-  //line-height: 1;
-  vertical-align: middle;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-
-  &:hover {
-    box-shadow: inset 0px 0px 0px 1px black;
-  }
-
-  &--icons {
-    padding-top: 5px;
-  }
-}
 .pause {
   &:before,
   &:after {

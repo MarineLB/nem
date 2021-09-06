@@ -46,40 +46,40 @@
 import logo from "@/components/logo";
 export default {
   components: {
-    logo
+    logo,
   },
   transition: {
     name: "layout",
-    mode: "out-in"
+    mode: "out-in",
   },
   pageTransition: {
     name: "layout",
-    mode: "out-in"
+    mode: "out-in",
   },
   layoutTransition: {
     name: "layout",
-    mode: "out-in"
+    mode: "out-in",
   },
   head() {
     return {
       link: [
         {
           rel: "canonical",
-          href: "https://mastering.niclaserlandsson.com" + this.$route.path
-        }
-      ]
+          href: "https://mastering.niclaserlandsson.com" + this.$route.path,
+        },
+      ],
     };
   },
   methods: {
     async loadSettings() {
       const data = await this.$store.dispatch("settings/getSettings");
-    }
+    },
   },
   mounted() {
     if (true) {
       this.loadSettings();
     }
-  }
+  },
 };
 </script>
 
@@ -150,16 +150,9 @@ h5 {
   }
 }
 
-h1 {
-  font-size: $mobile-text-xxl;
-  @include breakpoint(medlarge) {
-    font-size: $text-xxl;
-    letter-spacing: calc(
-      #{$heading-type-letter-spacing} * #{$text-scale-ratio} * #{$text-scale-ratio}
-    );
-  }
-}
-h2 {
+h1,
+h2,
+.h2 {
   font-size: $mobile-text-md;
   @include breakpoint(medlarge) {
     font-size: $text-lg;
@@ -168,7 +161,8 @@ h2 {
     );
   }
 }
-h3 {
+h3,
+.h3 {
   font-size: $mobile-text-md;
   letter-spacing: calc(#{$heading-type-letter-spacing} / #{$text-scale-ratio});
   @include breakpoint(medlarge) {
@@ -178,7 +172,9 @@ h3 {
     );
   }
 }
-h4 {
+h4,
+.h4,
+.h4 > * {
   font-size: $mobile-text-sm;
   letter-spacing: 0;
   @include breakpoint(medlarge) {
@@ -186,7 +182,8 @@ h4 {
     letter-spacing: 0;
   }
 }
-h5 {
+h5,
+.h5 {
   letter-spacing: 0;
 }
 a {
@@ -221,6 +218,10 @@ body {
 }
 p {
   margin-bottom: $base-margin;
+}
+
+ul {
+  list-style-type: circle;
 }
 .main-header {
   display: flex;
