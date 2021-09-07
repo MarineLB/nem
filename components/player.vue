@@ -1,6 +1,9 @@
 <template>
   <div class="player">
-    <div class="player__waveforms">
+    <div class="list" v-for="track in tracks" :key="track">
+      -{{ track }} <br />
+    </div>
+    <div class="player__waveforms" v-if="selected">
       <div
         class="player__waveform player__waveform--premaster"
         :class="{ 'player__waveform--hidden': currentlyPlaying === 'master' }"
@@ -17,7 +20,7 @@
       ></div>
     </div>
 
-    <div class="player__controls">
+    <div class="player__controls" v-if="selected">
       <div class="controls__play" v-if="!currentlyPlaying">
         <Button @click="play('premaster')">▶︎ premaster</Button>
         <Button @click="play('master')">▶︎ master</Button>
@@ -29,7 +32,7 @@
         <Button @click="switchTrack">switch</Button>
       </div>
     </div>
-    <div class="player__feedback">
+    <div class="player__feedback" v-if="selected">
       <small>
         Vinicius Honorio & Orion - No Love Lost (Temudo Remix)<br />
         <span v-if="currentlyPlaying">
@@ -41,13 +44,15 @@
 </template>
 <script>
 import Button from "@/components/button.vue";
-import master from "@/assets/audio/master.wav";
-import premaster from "@/assets/audio/premaster.wav";
+// import master from "@/assets/audio/master.wav";
+// import premaster from "@/assets/audio/premaster.wav";
 
 export default {
   components: { Button },
+  props: ["tracks"],
   data() {
     return {
+      selected: null,
       WaveSurfer: null,
       waveSurfer: {},
       loadedFiles: 0,
@@ -72,41 +77,47 @@ export default {
     };
   },
   mounted() {
-    this.WaveSurfer = require("wavesurfer.js");
-    let wsOptionsM = Object.assign(
-      { container: this.$refs.waveformM },
-      this.options,
-      this.optionsM
-    );
-    let wsOptionsP = Object.assign(
-      { container: this.$refs.waveformP },
-      this.options,
-      this.optionsP
-    );
-    this.master = new this.WaveSurfer.create(wsOptionsM);
-    this.premaster = new this.WaveSurfer.create(wsOptionsP);
-    this.master.load(master);
-    this.premaster.load(premaster);
-
-    this.premaster.on("ready", () => {
-      this.loadedFiles++;
-    });
-    this.master.on("ready", () => {
-      this.loadedFiles++;
-    });
-
-    this.premaster.on("finish", () => {
-      this.play("premaster", 0);
-    });
-    this.master.on("finish", () => {
-      this.play("master", 0);
-    });
+    // todo : recup les fichiers via l'url
+    const premaster = null;
+    const master = null;
+    if (this.selected) this.init(premaster, master);
   },
   beforeDestroy() {
-    this.master.destroy();
-    this.premaster.destroy();
+    if (this.master) this.master.destroy();
+    if (this.premaster) this.premaster.destroy();
   },
   methods: {
+    init(premaster, master) {
+      this.WaveSurfer = require("wavesurfer.js");
+      let wsOptionsM = Object.assign(
+        { container: this.$refs.waveformM },
+        this.options,
+        this.optionsM
+      );
+      let wsOptionsP = Object.assign(
+        { container: this.$refs.waveformP },
+        this.options,
+        this.optionsP
+      );
+      this.master = new this.WaveSurfer.create(wsOptionsM);
+      this.premaster = new this.WaveSurfer.create(wsOptionsP);
+      this.master.load(master);
+      this.premaster.load(premaster);
+
+      this.premaster.on("ready", () => {
+        this.loadedFiles++;
+      });
+      this.master.on("ready", () => {
+        this.loadedFiles++;
+      });
+
+      this.premaster.on("finish", () => {
+        this.play("premaster", 0);
+      });
+      this.master.on("finish", () => {
+        this.play("master", 0);
+      });
+    },
     play(track, start) {
       this.currentlyPlaying = track;
       this.notPlaying = track === "master" ? "premaster" : "master";

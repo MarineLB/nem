@@ -2,35 +2,35 @@
   <div class="page">
     <div class="content">
       <h2>Portfolio</h2>
-      <client-only>
-        <p>Tracks gain-matched at true peak max -0.2dBFS.</p>
-        <player />
-      </client-only>
     </div>
-    <div class="testimonials">
-      <div class="testimonial" v-for="item in testimonials" :key="item.author">
-        <h4 class="testimonial__quote">
-          {{ item.quote }}
-        </h4>
-        <span class="testimonial__author">- {{ item.author }}</span>
+    <template v-if="document">
+      <div class="slice" v-for="slice in slices" :key="slice.id">
+        <client-only v-if="slice.slice_type === 'player'">
+          <player :tracks="slice.items" />
+        </client-only>
+        <testimonials
+          v-if="slice.slice_type === 'testimonials'"
+          :testimonials="slice.items"
+        />
       </div>
-    </div>
-    <div class="others">
-      Previous clients include: Subjected (PFTA), Orion, Vinicius Honorio,
-      Sandro Galli & DJ Ogi, Insolate, Speedmaster Records, United We Stream,
-      Chlär, RAW Agency, Lex Gorrie, Michel Lauriola, Fixeer, Mattias Fridell,
-      Advanced Human & more
-    </div>
+    </template>
+    <div
+      class="others"
+      v-if="document"
+      v-html="$prismic.asHtml(document.text)"
+    />
   </div>
 </template>
 <script>
 import componentWrapper from "~/components/componentWrapper.vue";
 import player from "~/components/player.vue";
+import testimonials from "~/components/testimonials.vue";
 
 export default {
   components: {
     componentWrapper,
     player,
+    testimonials,
   },
   head() {
     return {
@@ -54,96 +54,25 @@ export default {
       ],
     };
   },
-  data() {
-    return {
-      testimonials: [
-        {
-          author: "Advanced Human (Gynoid Audio)",
-          quote: "I LOVE them man, very, very clean once again, and PUNCHY!!!",
-        },
-        {
-          author: "O.N.A",
-          quote:
-            "Special thanks to Niclas Erlandsson for his work as creative mastering engineer. I'm always surprised and encouraged by the things you're able to hear inside the music.",
-        },
-        {
-          author: "Subjected (PFTA)",
-          quote: "Hey man, the masters sounds ace. Thank you.",
-        },
-        {
-          author: "Michel Lauriola",
-          quote:
-            "Mate many thanks for this excellent master, sounds really great",
-        },
-        {
-          author: "Sandro Galli & DJ OGI",
-          quote: "Love the masters",
-        },
-      ],
-    };
+  async asyncData({ app, error, params, payload }) {
+    if (payload) {
+      const page = payload.data;
+      return { document: page, slices: page.body };
+    } else {
+      let document = await app.$prismic.api.getByUID("page", "portfolio");
+
+      if (document) {
+        const page = document.data;
+        return { document: page, slices: page.body };
+      } else {
+        error({ statusCode: 404, message: "You're lost" });
+      }
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
-.testimonials {
-  margin-top: auto;
-}
-.testimonial {
-  margin-bottom: 1rem;
-  background: black;
-  color: white;
-  overflow: hidden;
-  padding: 0.35rem;
-  //white-space: nowrap;
-  text-align: center;
-  cursor: default;
-
-  &:hover {
-    animation: flicker-blue 0.2s infinite;
-  }
-
-  &:nth-child(even) {
-    &:hover {
-      animation: flicker-yellow 0.3s infinite;
-    }
-  }
-}
-.testimonial__quote {
-  display: inline;
-}
-.testimonial__author {
-  font-size: 0.8rem;
-  font-weight: normal;
-}
-
-.testimonials__title {
-  margin-bottom: 1rem;
-}
-
 .hand {
   transform: rotate(90deg);
-}
-
-@keyframes flicker-blue {
-  0% {
-    background: black;
-  }
-  50% {
-    background: $primary-accent;
-  }
-  100% {
-    background: black;
-  }
-}
-@keyframes flicker-yellow {
-  0% {
-    background: black;
-  }
-  50% {
-    background: $secondary-accent;
-  }
-  100% {
-    background: black;
-  }
 }
 </style>

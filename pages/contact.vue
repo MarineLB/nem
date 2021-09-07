@@ -1,16 +1,33 @@
 <template>
   <div class="page">
-    <h1 class="h4">Get a free sample master</h1>
-    <p>
-      I offer stereo & stem mastering for both digital and vinyl releases of
-      electronic music. In order for me to give you an accurate price for your
-      project, please get in touch here.
-    </p>
+    <h1 class="h4" v-if="document">
+      {{ $prismic.asText(document.page_title) }}
+    </h1>
+    <div
+      class="content"
+      v-if="document"
+      v-html="$prismic.asHtml(document.text)"
+    />
     <div id="hubspotForm" v-once></div>
   </div>
 </template>
 <script>
 export default {
+  async asyncData({ app, error, payload }) {
+    if (payload) {
+      const page = payload.data;
+      return { document: page, slices: page.body };
+    } else {
+      let document = await app.$prismic.api.getByUID("page", "contact");
+
+      if (document) {
+        const page = document.data;
+        return { document: page, slices: page.body };
+      } else {
+        error({ statusCode: 404, message: "You're lost" });
+      }
+    }
+  },
   mounted() {
     if (process.client) {
       const script = document.createElement("script");
