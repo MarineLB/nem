@@ -1,7 +1,14 @@
 <template>
   <div class="player">
-    <div class="list" v-for="track in tracks" :key="track">
-      -{{ track }} <br />
+    <div class="list" v-for="(track, index) in tracks" :key="track">
+      <Button
+        :type="selected === track ? 'full' : 'ghost'"
+        @click="selected = track"
+        >{{ index + 1 }}</Button
+      >
+      <!-- -{{ track.artist_track }} - {{ track.premaster.url }}
+      {{ track.master.url }} -->
+      <br />
     </div>
     <div class="player__waveforms" v-if="selected">
       <div
@@ -34,7 +41,7 @@
     </div>
     <div class="player__feedback" v-if="selected">
       <small>
-        Vinicius Honorio & Orion - No Love Lost (Temudo Remix)<br />
+        {{ selected.artist_track }}<br />
         <span v-if="currentlyPlaying">
           currently playing <strong>{{ currentlyPlaying }}</strong>
         </span>
@@ -82,6 +89,11 @@ export default {
     const master = null;
     if (this.selected) this.init(premaster, master);
   },
+  watch: {
+    selected() {
+      this.init(this.selected.premaster.url, this.selected.master.url);
+    },
+  },
   beforeDestroy() {
     if (this.master) this.master.destroy();
     if (this.premaster) this.premaster.destroy();
@@ -101,6 +113,7 @@ export default {
       );
       this.master = new this.WaveSurfer.create(wsOptionsM);
       this.premaster = new this.WaveSurfer.create(wsOptionsP);
+      // TODO CHECK IF CAN LOAD FROM URL
       this.master.load(master);
       this.premaster.load(premaster);
 
