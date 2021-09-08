@@ -14,11 +14,17 @@ export default {
     htmlAttrs: {
       lang: "en"
     },
-    title: "niclas erlandsson mastering - electronic music mastering",
+    title:
+      "Electronic music mastering : niclas erlandsson, here to make your tunes shine.",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: pkg.description }
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "My main mission is to make your tunes shine. Several of my clients have hit #1 on the beatport techno charts and I can help you too."
+      }
     ],
     link: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },
