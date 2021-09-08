@@ -247,12 +247,8 @@ ul {
 }
 
 .golden-grid {
-  width: $width;
-  max-width: 98vw;
-  height: $height;
-  border: $border;
-  border-left: 3px solid $primary-color;
-  border-right: 3px solid $primary-color;
+  width: 100%;
+  height: 100vh;
   display: grid;
   background: $secondary-color;
   grid-template-rows: 61.8% 9.02% 5.58% 23.6%;
@@ -262,6 +258,15 @@ ul {
     "D E E B"
     "D G F B"
     "C C C B";
+
+  @include breakpoint("small") {
+    width: $width;
+    max-width: 98vw;
+    height: $height;
+    border: $border;
+    border-left: 3px solid $primary-color;
+    border-right: 3px solid $primary-color;
+  }
 
   @include breakpoint(medlarge) {
     width: $width-desktop;

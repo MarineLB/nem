@@ -30,6 +30,7 @@ export default {
   color: $primary-color;
   border: 2px solid $primary-color;
   height: 29px;
+  min-width: 30px;
   outline: none;
   //line-height: 1;
   vertical-align: middle;
