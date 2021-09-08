@@ -4,26 +4,27 @@
 <script>
 import camelcase from "camelcase";
 
-const getComponent = slug => ({
-  component: import(`@/components/${slug}`)
+const getComponent = (slug) => ({
+  component: import(`@/components/${slug}.vue`),
 });
 
 export default {
   props: {
     type: {
       type: String,
-      default: () => null
+      default: () => null,
     },
     data: {
       type: Object,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   created() {
     if (this.type) {
       const camelType = camelcase(this.type);
+      console.log(camelType);
       this.component = () => getComponent(camelType);
     }
-  }
+  },
 };
 </script>
