@@ -12,7 +12,7 @@
     </div>
     <!-- todo: contact form-->
     <div class="image-container">
-      <img :src="document.image.url" :alt="document.image.alt" />
+      <img loading="lazy" :src="document.image.url" :alt="document.image.alt" />
     </div>
     <section
       v-for="(slice, index) in slices"
