@@ -1,7 +1,10 @@
 <template>
   <div class="player">
-    <div class="list" v-for="(track, index) in tracks" :key="track">
+    <div class="list">
       <Button
+        v-for="(track, index) in tracks"
+        class="list__item"
+        :key="track.author"
         :type="selected === track ? 'full' : 'ghost'"
         @click="selected = track"
         >{{ index + 1 }}</Button
@@ -37,15 +40,13 @@
           <span class="play">▶︎</span><span class="pause"></span>
         </Button>
         <Button @click="switchTrack">switch</Button>
-      </div>
-    </div>
-    <div class="player__feedback" v-if="selected">
-      <small>
-        {{ selected.artist_track }}<br />
         <span v-if="currentlyPlaying">
           currently playing <strong>{{ currentlyPlaying }}</strong>
         </span>
-      </small>
+      </div>
+    </div>
+    <div class="player__feedback" v-if="selected">
+      <small>{{ selected.artist_track }}<br /></small>
     </div>
   </div>
 </template>
@@ -84,19 +85,23 @@ export default {
     };
   },
   mounted() {
-    // todo : recup les fichiers via l'url
-    const premaster = null;
-    const master = null;
-    if (this.selected) this.init(premaster, master);
+    // const premaster = null;
+    // const master = null;
+    if (this.tracks && this.tracks.length > 0) this.selected = this.tracks[0];
+    // this.$nextTick(() => {
+    //   if (this.selected) this.init(premaster, master);
+    // });
   },
   watch: {
     selected() {
-      this.init(this.selected.premaster.url, this.selected.master.url);
+      this.reset();
+      this.$nextTick(() => {
+        this.init(this.selected.premaster.url, this.selected.master.url);
+      });
     },
   },
   beforeDestroy() {
-    if (this.master) this.master.destroy();
-    if (this.premaster) this.premaster.destroy();
+    this.reset();
   },
   methods: {
     init(premaster, master) {
@@ -147,6 +152,13 @@ export default {
       this.progress = this.currentTrack.getCurrentTime();
       this.play(this.notPlaying, this.progress);
     },
+    reset() {
+      if (this.master) this.master.destroy();
+      if (this.premaster) this.premaster.destroy();
+      this.currentlyPlaying = null;
+      this.notPlaying = null;
+      this.progress = 0;
+    },
   },
   computed: {
     currentTrack() {
@@ -156,6 +168,12 @@ export default {
 };
 </script>
 <style lang="scss">
+.list {
+  margin-bottom: $margin-md;
+}
+.list__item {
+  margin-right: $margin-sm;
+}
 .player__waveforms {
   position: relative;
   height: 50px;
