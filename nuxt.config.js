@@ -17,6 +17,10 @@ export default {
     title:
       "Electronic music mastering : niclas erlandsson, here to make your tunes shine.",
     meta: [
+      {
+        name: "google-site-verification",
+        content: "nhu-L81rwGFB9ZA_Ptf2-KHTkuLLc-OWVtLt7uL9Vmg"
+      },
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
