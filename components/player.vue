@@ -3,7 +3,7 @@
     <div class="list">
       <Button
         v-for="(track, index) in tracks"
-        class="list__item"
+        class="list__item button--no-hover"
         :key="track.author"
         :type="selected === track ? 'full' : 'ghost'"
         @click="selected = track"
@@ -155,6 +155,7 @@ export default {
     reset() {
       if (this.master) this.master.destroy();
       if (this.premaster) this.premaster.destroy();
+      this.loadedFiles = 0;
       this.currentlyPlaying = null;
       this.notPlaying = null;
       this.progress = 0;

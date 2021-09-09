@@ -48,6 +48,10 @@ export default {
     &:hover {
       color: $primary-color;
       background: $secondary-color;
+      &.button--no-hover {
+        background: $primary-color;
+        color: $secondary-color;
+      }
     }
   }
 
