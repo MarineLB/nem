@@ -208,7 +208,7 @@ small {
 }
 
 // golden grid
-$height: 85vh;
+$height: 93vh;
 $width-desktop: calc(#{$height}* #{$phi});
 $width: calc(#{$height}/ #{$phi});
 $border: 2px solid $primary-color;

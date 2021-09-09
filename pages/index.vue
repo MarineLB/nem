@@ -85,13 +85,13 @@ export default {
 }
 .image-container {
   margin-top: $margin-lg;
-  margin-left: calc(#{$margin-sm} * -1);
-  margin-right: calc(#{$margin-sm} * -1);
+  // margin-left: calc(#{$margin-sm} * -1);
+  // margin-right: calc(#{$margin-sm} * -1);
   // margin-bottom: calc(#{$margin-sm} * -1);
 
   @include breakpoint(small) {
-    margin-left: calc(#{$margin-md} * -1);
-    margin-right: calc(#{$margin-md} * -1);
+    // margin-left: calc(#{$margin-md} * -1);
+    // margin-right: calc(#{$margin-md} * -1);
     // margin-bottom: calc(#{$margin-md} * -1)
     margin-bottom: $margin-md;
   }
