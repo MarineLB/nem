@@ -110,8 +110,7 @@ export default {
 
       return Promise.all([pages, posts]).then(values => {
         let pagesRoutes = values[0].map(page => page.route);
-        let postsRoutes = values[1].map(post => post.route);
-        return [...pagesRoutes, ...postsRoutes, "/", "/thank-you", "/404"];
+        return [...pagesRoutes, "/", "/thank-you", "/404"];
       });
     }
   },
