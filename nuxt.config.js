@@ -90,26 +90,10 @@ export default {
             console.log("Something went wrong: ", err);
           }
         );
-      let posts = Prismic.api(`https://${SITENAME}.cdn.prismic.io/api/v2`)
-        .then(function(api) {
-          return api.query(Prismic.Predicates.at("document.type", "news"));
-        })
-        .then(
-          res => {
-            return res.results.map(page => {
-              return {
-                route: "/blog/" + page.uid,
-                payload: page
-              };
-            });
-          },
-          function(err) {
-            console.log("Something went wrong: ", err);
-          }
-        );
 
       return Promise.all([pages, posts]).then(values => {
         let pagesRoutes = values[0].map(page => page.route);
+        console.log("---- pages routes ---- ", pagesRoutes);
         return [...pagesRoutes, "/", "/thank-you", "/404"];
       });
     }
