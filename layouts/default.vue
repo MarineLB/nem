@@ -137,6 +137,10 @@ body {
   }
 }
 
+h1 {
+  margin-top: 0 !important;
+}
+
 h1,
 h2,
 h3,
@@ -146,6 +150,8 @@ h5 {
   font-family: $heading-type-fallback;
   font-family: $heading-type;
   line-height: $heading-type-line-height;
+  margin-top: $margin-md;
+  margin-bottom: $margin-xs;
   //letter-spacing: $heading-type-letter-spacing;
   color: inherit;
   @include breakpoint(medlarge) {
@@ -192,6 +198,10 @@ h5,
 a {
   color: inherit;
   text-decoration: underline;
+  transition: all .3s ease;
+  &:hover {
+    text-decoration-color: $primary-accent; 
+  }
 }
 *,
 *:before,

@@ -1,6 +1,6 @@
 <template>
   <div class="player">
-    <div class="list">
+    <div class="list"  v-if="tracks.length > 1">
       <Button
         v-for="(track, index) in tracks"
         class="list__item button--no-hover"
@@ -29,11 +29,10 @@
         ref="waveformM"
       ></div>
     </div>
-
     <div class="player__controls" v-if="selected">
       <div class="controls__play" v-if="!currentlyPlaying">
-        <Button @click="play('premaster')">▶︎ premaster</Button>
-        <Button @click="play('master')">▶︎ master</Button>
+        <Button @click="play('premaster')">▶︎ {{selected.premaster_label || 'premaster'}}</Button>
+        <Button @click="play('master')">▶︎ {{selected.master_label || 'master'}}</Button>
       </div>
       <div class="controls__playing" v-else>
         <Button class="control--icons" @click="playPause">
@@ -41,7 +40,7 @@
         </Button>
         <Button @click="switchTrack">switch</Button>
         <span v-if="currentlyPlaying">
-          currently playing <strong>{{ currentlyPlaying }}</strong>
+          currently playing <strong>{{ currentlyPlaying  === 'master' ? selected.master_label || 'master' : selected.premaster_label || 'premaster'}}</strong>
         </span>
       </div>
     </div>
@@ -57,7 +56,12 @@ import Button from "@/components/button.vue";
 
 export default {
   components: { Button },
-  props: ["tracks"],
+  props: {
+    data: {
+      type: Object,
+      required: true
+    },
+  },
   data() {
     return {
       selected: null,
@@ -84,6 +88,14 @@ export default {
       progress: 0,
     };
   },
+  computed: {
+    tracks() {
+      return this.data.items
+    },
+    currentTrack() {
+      return this[this.currentlyPlaying];
+    },
+  }, 
   mounted() {
     // const premaster = null;
     // const master = null;
@@ -159,11 +171,6 @@ export default {
       this.currentlyPlaying = null;
       this.notPlaying = null;
       this.progress = 0;
-    },
-  },
-  computed: {
-    currentTrack() {
-      return this[this.currentlyPlaying];
     },
   },
 };

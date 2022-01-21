@@ -64,6 +64,7 @@ export default {
         linkResolver: function(doc, ctx) {
           if (doc.type === "homepage") return "/";
           if (doc.type === "page") return "/" + doc.uid;
+          if (doc.type === "blog") return "/blog/" + doc.uid;
           return "/";
         }
       }
@@ -143,8 +144,25 @@ export default {
             console.log("Something went wrong: ", err);
           }
         );
+      let posts = Prismic.api(`https://${SITENAME}.cdn.prismic.io/api/v2`)
+        .then(function(api) {
+          return api.query(Prismic.Predicates.at("document.type", "blog_post"));
+        })
+        .then(
+          res => {
+            return res.results.map(page => {
+              return {
+                route: "/blog/" + page.uid,
+                payload: page
+              };
+            });
+          },
+          function(err) {
+            console.log("Something went wrong: ", err);
+          }
+        );
 
-      return Promise.all([pages]).then(values => {
+      return Promise.all([pages, posts]).then(values => {
         return [...values[0], ["/", "/thank-you", "/404", "/portfolio"]];
       });
     }

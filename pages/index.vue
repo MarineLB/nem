@@ -21,20 +21,30 @@
     >
       <componentWrapper :type="slice.slice_type" :data="slice" />
     </section>
+    
+    <section class="blog_teaser" v-if="posts && posts.length > 0">
+      <h2>Latest articles on the blog</h2>
+      <BlogList :posts="posts"></BlogList>
+      <router-link to="/blog">See all articles</router-link>
+    </section>
+    <br><br>
   </div>
 </template>
 
 <script>
 import Button from "@/components/button.vue";
+import BlogList from "@/components/blogList.vue";
 import componentWrapper from "@/components/componentWrapper.vue";
 export default {
   components: {
     componentWrapper,
     Button,
+    BlogList
   },
   data() {
     return {
       slices: [],
+      posts: null
     };
   },
   head() {
@@ -62,10 +72,15 @@ export default {
     let document = await app.$prismic.api.query(
       app.$prismic.predicates.at("document.type", "homepage")
     );
+    let blog = await app.$prismic.api.query(
+      app.$prismic.predicates.at("document.type", "blog_post"),
+      {pageSize: 5}
+    );
 
     if (document) {
       const page = document.results[0].data;
-      return { document: page, slices: page.body };
+      const posts = blog.results;
+      return { document: page, slices: page.body, posts };
     } else {
       error({ statusCode: 404, message: "You're lost" });
     }
@@ -96,4 +111,5 @@ export default {
     margin-bottom: $margin-md;
   }
 }
+
 </style>

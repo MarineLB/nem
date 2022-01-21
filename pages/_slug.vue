@@ -43,7 +43,6 @@ export default {
       }
     }
   }
-  // TODO : asyncData query page by slug on prismic api
 };
 </script>
 <style lang="scss"></style>

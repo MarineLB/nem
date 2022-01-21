@@ -22,7 +22,6 @@ export default {
   created() {
     if (this.type) {
       const camelType = camelcase(this.type);
-      console.log(camelType);
       this.component = () => getComponent(camelType);
     }
   },

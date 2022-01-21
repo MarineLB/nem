@@ -1,12 +1,12 @@
 <template>
   <div class="page">
     <div class="content">
-      <h2>Portfolio</h2>
+      <h1>Portfolio</h1>
     </div>
     <template v-if="document">
       <div class="slice" v-for="slice in slices" :key="slice.id">
         <client-only v-if="slice.slice_type === 'player'">
-          <player :tracks="slice.items" />
+          <player :data="slice" />
         </client-only>
         <testimonials
           v-if="slice.slice_type === 'testimonials'"
