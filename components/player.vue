@@ -97,16 +97,17 @@ export default {
     },
   }, 
   mounted() {
-    // const premaster = null;
-    // const master = null;
     if (this.tracks && this.tracks.length > 0) this.selected = this.tracks[0];
-    // this.$nextTick(() => {
-    //   if (this.selected) this.init(premaster, master);
-    // });
   },
   watch: {
     selected() {
       this.reset();
+      this.$ga.event({
+        eventCategory: 'Player',
+        eventAction: 'select',
+        eventLabel: 'Selected another track',
+        eventValue: this.selected.artist_track
+      });
       this.$nextTick(() => {
         this.init(this.selected.premaster.url, this.selected.master.url);
       });
@@ -130,7 +131,7 @@ export default {
       );
       this.master = new this.WaveSurfer.create(wsOptionsM);
       this.premaster = new this.WaveSurfer.create(wsOptionsP);
-      // TODO CHECK IF CAN LOAD FROM URL
+
       this.master.load(master);
       this.premaster.load(premaster);
 
@@ -152,17 +153,26 @@ export default {
       this.currentlyPlaying = track;
       this.notPlaying = track === "master" ? "premaster" : "master";
       this[track].play(start);
+      this.$ga.event({
+        eventCategory: 'Player',
+        eventAction: 'play',
+        eventLabel: 'Played a track',
+        eventValue: this.selected.artist_track
+      });
     },
     playPause() {
       this.currentTrack.playPause();
-      //this.progress = this.currentTrack.getCurrentTime();
-      //this.currentlyPlaying = null;
-      //this.notPlaying = null;
     },
     switchTrack() {
       this.currentTrack.pause();
       this.progress = this.currentTrack.getCurrentTime();
       this.play(this.notPlaying, this.progress);
+      this.$ga.event({
+        eventCategory: 'Player',
+        eventAction: 'switch',
+        eventLabel: 'Compared between master/premaster',
+        eventValue: this.notPlaying
+      });
     },
     reset() {
       if (this.master) this.master.destroy();

@@ -1,20 +1,35 @@
 <template>
   <div class="page">
-    <h1>{{document.title[0].text}}</h1>
-    <componentWrapper 
+    <header>
+      <nuxt-link to="/blog">← Blog</nuxt-link>
+      <h1>{{document.title[0].text}}</h1>
+    </header>
+    <main>
+      <componentWrapper 
         v-for="slice in slices" 
         :key="slice.id" 
         :type="slice.slice_type"
         :data="slice" >
-    </componentWrapper>
-    <!-- <div v-for="slice in slices" :key="slice.id" >coucou {{}}</div> -->
+      </componentWrapper>
+      <Space :data="{primary: {size: 'large'}}"></Space>
+    </main>
+    <footer>
+      <div v-html="$prismic.asHtml(settings.blog_footer_message)"></div>
+      <div class="cta">
+        <Button type="full" size="large" @click="clickCTA"
+          >{{settings.blog_footer_call_to_action}}</Button
+        >
+      </div>
+    </footer>
   </div>
 </template>
 <script>
 import componentWrapper from "~/components/componentWrapper.vue";
+import Button from "@/components/button.vue";
+import Space from "@/components/space.vue";
 export default {
   components: {
-    componentWrapper
+    componentWrapper, Button, Space
   },
   head() {
     return {
@@ -53,6 +68,23 @@ export default {
         error({ statusCode: 404, message: "You're lost" });
       }
     }
+  },
+  computed: {
+    settings() {
+      return this.$store.state.settings.settings.data;
+    }
+  },
+  methods: {
+    methods: {
+    clickCTA() {
+      this.$ga.event({
+        eventCategory: 'CTA blog',
+        eventAction: 'click',
+        eventLabel: 'Clicked on blog CTA',
+      });
+      this.$router.push('/contact');
+    }
+  }
   }
 };
 </script>

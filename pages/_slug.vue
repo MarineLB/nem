@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <nuxt-link to="/">← Homepage</nuxt-link>
     <div class="content" v-html="$prismic.asHtml(document.text)" />
   </div>
 </template>

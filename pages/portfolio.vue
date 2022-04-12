@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <div class="content">
+      <nuxt-link to="/">← Homepage</nuxt-link>
       <h1>Portfolio</h1>
     </div>
     <template v-if="document">

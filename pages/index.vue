@@ -1,19 +1,18 @@
 <template>
-  <div class="page">
+  <div class="page homepage">
     <div
       class="home-site-title h4"
       v-html="$prismic.asHtml(document.site_title)"
     ></div>
     <div class="content" v-html="$prismic.asHtml(document.text)" />
     <div class="cta">
-      <Button type="full" size="large" @click="$router.push('/contact')"
+      <Button type="full" size="large" @click="clickCTA"
         >Get a free sample master</Button
       >
     </div>
-    <!-- todo: contact form-->
-    <div class="image-container">
+    <!-- <div class="image-container">
       <img loading="lazy" :src="document.image.url" :alt="document.image.alt" />
-    </div>
+    </div> -->
     <section
       v-for="(slice, index) in slices"
       :key="index"
@@ -63,7 +62,6 @@ export default {
         },
         { name: "og:description", content: this.document.meta_description },
         { name: "og:type", content: "website" },
-        { name: "og:url", content: "https://SITENAME.com" },
       ],
     };
   },
@@ -85,13 +83,23 @@ export default {
       error({ statusCode: 404, message: "You're lost" });
     }
   },
+  methods: {
+    clickCTA() {
+      this.$ga.event({
+        eventCategory: 'CTA home',
+        eventAction: 'click',
+        eventLabel: 'Clicked on home CTA',
+      });
+      this.$router.push('/contact');
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-// .home-site-title h1 {
-//   word-spacing: 500px;
-// }
+.homepage .content{
+  max-width: 669px;
+}
 .content {
   margin-top: $base-margin;
 }

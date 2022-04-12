@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <h1 class="h4" v-if="document">
+    <nuxt-link to="/">← Homepage</nuxt-link>
+    <h1 class="h2" v-if="document">
       {{ $prismic.asText(document.page_title) }}
     </h1>
     <div
@@ -23,7 +24,7 @@ export default {
       let document = await app.$prismic.api.getByUID("page", "blog");
       let blog = await app.$prismic.api.query(
         app.$prismic.predicates.at("document.type", "blog_post"),
-        {pageSize: 5}
+        {pageSize: 15}
       );
 
       if (document) {

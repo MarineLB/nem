@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <h1 class="h4" v-if="document">
+    <nuxt-link to="/home">← Homepage</nuxt-link>
+    <h1 class="h2" v-if="document">
       {{ $prismic.asText(document.page_title) }}
     </h1>
     <div

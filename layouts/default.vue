@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <div class="golden-grid">
+    <div :class="`golden-grid ${onBlog ? 'golden-grid--reading' : ''}`">
       <div class="grid__block grid__block--main">
         <header class="main-header">
           <logo />
@@ -32,14 +32,19 @@
       >
         get in touch
       </nuxt-link>
-      <div class="grid__block grid__block--contact"></div>
+      <nuxt-link
+        to="/blog"
+        class="grid__block grid__block--link grid__block--contact"
+      >
+        blog
+      </nuxt-link>
       <a
         href="//instagram.com/niclaserlandsson"
         target="_blank"
         class="grid__block grid__block--link grid__block--test1"
         >☞</a
       >
-      <div class="grid__block grid__block--test2"></div>
+      <div class="grid__block grid__block--link grid__block--test2"></div>
     </div>
   </div>
 </template>
@@ -72,6 +77,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    onBlog() {
+      return this.$route.name === 'blog' || this.$route.name === 'blog-slug';
+    }
   },
   methods: {
     async loadSettings() {
@@ -289,6 +299,17 @@ ul {
       "A E G C"
       "A D D C";
   }
+
+  &--reading {
+    transition: all .3s ease-in-out;
+    .grid__block--link {
+      opacity: 0.1;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .grid__block {
@@ -375,6 +396,10 @@ ul {
 }
 .quote__author {
   margin-bottom: 0;
+}
+
+.cta {
+  margin-top: $margin-md;
 }
 
 .layout-enter-active,
