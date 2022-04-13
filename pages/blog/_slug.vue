@@ -13,7 +13,7 @@
       </componentWrapper>
       <Space :data="{primary: {size: 'large'}}"></Space>
     </main>
-    <footer>
+    <footer v-if="settings">
       <div v-html="$prismic.asHtml(settings.blog_footer_message)"></div>
       <div class="cta">
         <Button type="full" size="large" @click="clickCTA"
@@ -71,11 +71,10 @@ export default {
   },
   computed: {
     settings() {
-      return this.$store.state.settings.settings.data;
+      if (this.$store.state.settings && this.$store.state.settings.settings) return this.$store.state.settings.settings.data;
     }
   },
   methods: {
-    methods: {
     clickCTA() {
       this.$ga.event({
         eventCategory: 'CTA blog',
@@ -84,7 +83,6 @@ export default {
       });
       this.$router.push('/contact');
     }
-  }
   }
 };
 </script>
